@@ -11,7 +11,7 @@ from copy import deepcopy
 pygame.init()
 
 class CellularAutomata(pygame.sprite.Sprite):
-    def __init__(self, configuration=GLIDER):
+    def __init__(self, configuration=TEST):
         """ 
         TODO
         """
@@ -44,13 +44,6 @@ class CellularAutomata(pygame.sprite.Sprite):
         for pos, cell in self.cells_position.items():
             screen.blit(cell, pos)
 
-    def update_grid(self):
-        """
-        TODO
-        """
-        for pos, cell in self.cells_2_change.items():
-            self.cells_position[pos] = cell
-
     def apply_transition_rules(self, environment="Moore"):
         """TODO
         A dictionnary is used to keep track of the cells that will change state
@@ -69,6 +62,31 @@ class CellularAutomata(pygame.sprite.Sprite):
             else:
                 if alive_neighbors == 3:
                     self.cells_2_change[pos] = ALIVE_CELL 
+
+        # Updating grid
+        for new_pos, cell in self.cells_2_change.items():
+            self.cells_position[new_pos] = cell
+
+    def apply_transition_rules_2(self, environment="Moore"):
+        """TODO
+        A dictionnary is used to keep track of the cells that will change state
+        Rules reminder:
+        1. A living cell with fewer than 2 living neighbours dies
+        2. A living cell with 2 or 3 living neighbours stays alive
+        3. A living cell with more than 3 living cell dies (overpopulation)
+        4. A dead cell with exactly 3 living cells becomes alive
+        """
+        for pos, cell in self.cells_position.items():
+            r, c = pos
+            alive_neighbors = self.get_alive_neighbors(r, c)
+            if alive_neighbors < 4:
+                self.cells_2_change[pos] = DEAD_CELL
+            elif alive_neighbors >= 5:
+                self.cells_2_change[pos] = ALIVE_CELL
+  
+        # Updating grid
+        for new_pos, cell in self.cells_2_change.items():
+            self.cells_position[new_pos] = cell
 
     # SEE BOOK (RETURN GENERATOR INSTEAD OF LIST)
     def get_alive_neighbors(self, r, c, environment="Moore") -> list:

@@ -27,20 +27,20 @@ BACKGROUND = (30, 30, 30)
 DEAD_CELL = pygame.image.load(
     os.path.join(IMAGES_DIR, "dead_cell.png")
     ).convert_alpha()
-DEAD_CELL = pygame.transform.rotozoom(DEAD_CELL, 0, 0.2)
+DEAD_CELL = pygame.transform.rotozoom(DEAD_CELL, 0, 0.6)
 X_INFLATE = -4
 Y_INFLATE = -4
 DEAD_CELL_rect = DEAD_CELL.get_rect().inflate(X_INFLATE, Y_INFLATE)
 ALIVE_CELL = pygame.image.load(
     os.path.join(IMAGES_DIR, "alive_cell.png")
     ).convert_alpha()
-ALIVE_CELL = pygame.transform.rotozoom(ALIVE_CELL, 0, 0.2)
+ALIVE_CELL = pygame.transform.rotozoom(ALIVE_CELL, 0, 0.6)
 CELL_SIZE = DEAD_CELL_rect.width
 CELL_IMGS = {1: DEAD_CELL, 2: ALIVE_CELL}
 
 # Window size (function of number of cells and rectangle inflation)
-NB_X = 45
-NB_Y = 45
+NB_X = 4
+NB_Y = 4
 SIZE_X = CELL_SIZE * NB_X - X_INFLATE
 SIZE_Y = CELL_SIZE * NB_Y - Y_INFLATE
 
@@ -53,6 +53,25 @@ GLIDER = (
     (CELL_SIZE * 4,  CELL_SIZE * 7),
     (CELL_SIZE * 5,  CELL_SIZE * 7),
 )
+# TEST = (
+#     (CELL_SIZE * 2, CELL_SIZE * 2),
+#     (CELL_SIZE * 1, CELL_SIZE * 2),
+#     (CELL_SIZE * 3, CELL_SIZE * 2),
+#     (CELL_SIZE * 2, CELL_SIZE * 1),
+#     (CELL_SIZE * 1, CELL_SIZE * 3),
+#     (CELL_SIZE * 1, CELL_SIZE * 4),
+#     (CELL_SIZE * 4, CELL_SIZE * 4),
+#     (CELL_SIZE * 2, CELL_SIZE * 3),    
+#     (CELL_SIZE * 0, CELL_SIZE * 0),    
+#     (CELL_SIZE * 1, CELL_SIZE * 0),    
+#     (CELL_SIZE * 4, CELL_SIZE * 0),    
+#     (CELL_SIZE * 5, CELL_SIZE * 0),    
+#     (CELL_SIZE * 5, CELL_SIZE * 2),    
+#     (CELL_SIZE * 5, CELL_SIZE * 3),    
+#     (CELL_SIZE * 5, CELL_SIZE * 4),    
+#     (CELL_SIZE * 2, CELL_SIZE * 5),    
+#     (CELL_SIZE * 0, CELL_SIZE * 4),    
+# )
 
 
 if __name__ == "__main__":
