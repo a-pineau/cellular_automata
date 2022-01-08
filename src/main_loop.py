@@ -22,11 +22,13 @@ def main():
                 if event.key == K_ESCAPE:
                     running = False
                 elif event.key == K_SPACE:
-                    CA.apply_transition_rules()
-                    CA.update_grid()
-                    
+                    CA.apply_transition_rules_2()
+
         CA.display_grid(screen)
+        # CA.apply_transition_rules()
+        # CA.update_grid()
         pygame.display.update()
+        # pygame.time.delay(100)
     pygame.quit()
 
 
