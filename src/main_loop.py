@@ -2,11 +2,11 @@
 
 import sys
 import os
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (400, 200)
 import math
 import pygame
 from cellular_automata import CellularAutomata
 from constants import *
-
 
 # Game loop
 def main():
