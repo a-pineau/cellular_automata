@@ -48,7 +48,6 @@ def set_Gosper_glider_gun(r, c):
         (r + 3, c + 11),
         (r + 4, c + 12),
         (r + 4, c + 13),
-
     )
 
 # def set_B(r, c):

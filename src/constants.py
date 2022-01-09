@@ -13,7 +13,7 @@ from pygame.locals import *
 
 pygame.init()
 useless_screen = pygame.display.set_mode()
-FONT = pygame.font.SysFont("Calibri", 42)
+FONT = pygame.font.SysFont("Calibri", 40)
 
 # Directories
 FILE_DIR = os.path.dirname(__file__)
@@ -21,6 +21,9 @@ IMAGES_DIR = os.path.join(FILE_DIR, "../imgs")
 
 # Colours
 BACKGROUND = (30, 30, 30)
+WHITE = (255, 255, 255)
+ALIVE = (46, 204, 113)
+BLUE_1 = (158, 190, 228, 255)
 
 # Images
 # https://icons8.com/icons/set/colored-square
@@ -36,13 +39,14 @@ ALIVE_CELL = pygame.image.load(
     ).convert_alpha()
 ALIVE_CELL = pygame.transform.rotozoom(ALIVE_CELL, 0, 0.2)
 CELL_SIZE = DEAD_CELL_rect.width
-CELL_IMGS = {1: DEAD_CELL, 2: ALIVE_CELL}
+CELL_IMGS = {0: DEAD_CELL, 1: ALIVE_CELL}
 
 # Window size (function of number of cells and rectangle inflation)
-N_COL = 60
-N_ROW = 50
+YOFFSET = 40
+N_COL = 90
+N_ROW = 60
 SIZE_X = CELL_SIZE * N_COL - X_INFLATE
-SIZE_Y = CELL_SIZE * N_ROW - Y_INFLATE
+SIZE_Y = CELL_SIZE * N_ROW - Y_INFLATE + 2 * YOFFSET
 
 # Initial configurations
 # Glider
@@ -54,6 +58,9 @@ GLIDER = (
     (5,  7),
 )
 
+def main():
+    pass
+
 
 if __name__ == "__main__":
-    pass
+    main()
