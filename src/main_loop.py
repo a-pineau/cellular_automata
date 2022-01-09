@@ -16,19 +16,14 @@ def main():
     CA = CellularAutomata()
     running = True
     pause = True
-    waiting = 10000
     while running:
         # Events handling
-        CA.display_grid(screen)
         for event in pygame.event.get():
             if (event.type == KEYDOWN and event.key == K_ESCAPE
                 or event.type == QUIT):
                     running = False
-            if event.type == KEYDOWN or event.type == KEYUP:
-                if event.key == K_SPACE:
-                    pause = False
-        if not pause:
-            CA.apply_rules()
+        CA.apply_rules()
+        CA.display_grid(screen)
         pygame.display.update()
         pygame.time.delay(100)
     pygame.quit()

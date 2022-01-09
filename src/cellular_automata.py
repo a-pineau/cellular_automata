@@ -1,7 +1,7 @@
 import math
 import numpy as np
 from constants import *
-from patterns import set_glider
+from patterns import set_glider, set_Gosper_glider_gun
 
 pygame.init()
 
@@ -14,7 +14,7 @@ class CellularAutomata(pygame.sprite.Sprite):
         self.configuration = configuration
         self.cells = np.zeros((N_ROW, N_COL))
         self.models = [
-            set_glider(10, 50)
+            # set_Gosper_glider_gun(8, 5)
         ]
         self.set_initial_state()
 

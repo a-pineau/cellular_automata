@@ -39,8 +39,8 @@ CELL_SIZE = DEAD_CELL_rect.width
 CELL_IMGS = {1: DEAD_CELL, 2: ALIVE_CELL}
 
 # Window size (function of number of cells and rectangle inflation)
-N_COL = 78
-N_ROW = 60
+N_COL = 60
+N_ROW = 50
 SIZE_X = CELL_SIZE * N_COL - X_INFLATE
 SIZE_Y = CELL_SIZE * N_ROW - Y_INFLATE
 
