@@ -12,7 +12,7 @@ from pygame import gfxdraw
 
 from cellular_automata import CellularAutomata
 from constants import *
-SNAP_FOLDER = os.path.join(os.path.dirname(__file__), "snapshots")
+SNAP_FOLDER = os.path.join(os.path.dirname(__file__), "results")
 n_snap = 0
 
 
