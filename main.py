@@ -17,7 +17,7 @@ n_snap = 0
 
 
 def main():
-    """Implements Game of Life loop."""
+    """Implements the main loop."""
     monitor = win32api.EnumDisplayDevices()
     try:
         os.mkdir(SNAP_FOLDER)
@@ -100,7 +100,7 @@ def main():
     # Closing window
     pygame.quit()
 
-def get_freqrate_monitor(device):
+def get_freqrate_monitor(device) -> int:
     """Returns the frequency rate (in Hz) of the monitor used.
 
     Parameter
@@ -112,7 +112,7 @@ def get_freqrate_monitor(device):
     settings = win32api.EnumDisplaySettings(device.DeviceName, -1)
     return getattr(settings, "DisplayFrequency")
 
-def record_game(screen):
+def record_game(screen) -> None:
     """Save a snapshot of the current grid to the SNAP_FOLDER.
 
     Parameter
@@ -127,7 +127,7 @@ def record_game(screen):
     file_name = f"snapshot_{n_snap}.{extension}"
     pygame.image.save(screen, os.path.join(SNAP_FOLDER, file_name))
 
-def draw_circle_selection(screen, pressed):
+def draw_circle_selection(screen, pressed) -> None:
     """Draws a circle centered around the mouse pointer.
 
     The circle is drawn when holding shift and pressing left or right 
@@ -138,6 +138,8 @@ def draw_circle_selection(screen, pressed):
     ---------
     screen: pygame.Surface (required)
         Game window
+    pressed: bool (required)
+        True if any mouseclick is pressed, False otherwise
     """
 
     # left or right click
@@ -148,7 +150,7 @@ def draw_circle_selection(screen, pressed):
         if pygame.mouse.get_focused():
             screen.blit(circle, circle_rect)
 
-def display_generation(screen, generation):
+def display_generation(screen, generation) -> None:
     """Display the current number of generations (top-left)
 
     Parameters
@@ -165,7 +167,7 @@ def display_generation(screen, generation):
     gen_rect.top = 5
     screen.blit(gen, gen_rect)
 
-def display_record_state(screen, record):
+def display_record_state(screen, record) -> None:
     """Display the current state of the record mode (top-center).
 
     Parameters
@@ -186,8 +188,19 @@ def display_record_state(screen, record):
     record_state_rect.top = 39
     screen.blit(record_state, record_state_rect)
 
-def display_cells_stats(screen, alive, percentage):
-    """Display cells statistics (top-right)."""
+def display_cells_stats(screen, alive, percentage) -> None:
+    """Display cells statistics (top-right).
+
+    Parameters
+    ----------
+    screen: pygame.Surface (required)
+        Game window
+    alive: int (required)
+        Current number of cells alive
+    percentage: float (required)
+        Current percentage of cells alive
+    """
+
     stats = f"{alive} Cells alive ({percentage}%)"
     stats = FONT.render(stats, True, ALIVE)
     stats_rect = stats.get_rect()
@@ -195,8 +208,17 @@ def display_cells_stats(screen, alive, percentage):
     stats_rect.top = 5
     screen.blit(stats, stats_rect)
 
-def display_progress_bar(screen, percentage):
-    """Display a progress bar for alive cells (top-right)."""
+def display_progress_bar(screen, percentage) -> None:
+    """Display a progress bar for alive cells (top-right).
+
+    Parameters
+    ----------
+    screen: pygame.Surface (required)
+        Game window
+    percentage: float (required)
+        Current percentage of cells alive
+    """
+
     start = SIZE_X * 0.675
     end_background = SIZE_X - start - 8
     width = 15
@@ -207,7 +229,16 @@ def display_progress_bar(screen, percentage):
     pygame.draw.rect(screen, ALIVE, bar_foreground_rect)
 
 def display_FPS(screen, clock):
-    """Display FPS (top-center)."""
+    """Display FPS (top-center).
+
+    Parameters
+    ----------
+    screen: pygame.Surface (required)
+        Game window
+    clock: Clock (required)
+        Pygame internal clock
+    """
+
     n_fps = int(clock.get_fps())
     fps_text = FONT.render(f"FPS: {n_fps}", True, YELLOW)
     fps_text_rect = fps_text.get_rect()
@@ -215,12 +246,12 @@ def display_FPS(screen, clock):
     fps_text_rect.top = 5
     screen.blit(fps_text, fps_text_rect)
 
-def display_menu(screen):
+def display_menu(screen) -> None:
     """Displays how to show game commands (top-left).
     
     Parameter
     ---------
-    screen: pygame.Surface
+    screen: pygame.Surface (required)
         Game window
     """
     FONT = pygame.font.SysFont("Calibri", 29)
@@ -230,12 +261,15 @@ def display_menu(screen):
     text_menu_rect.top = 39
     screen.blit(text_menu, text_menu_rect)
 
-def display_commands(screen):
+def display_commands(screen) -> None:
     """Displays commands (top-left).
+
+    Since Pygame doesn't allow (to my knowledge) line breaks when
+    rendering fonts, the commands are split into lines separately.
 
     Parameter
     ---------
-    screen: pygame.Surface
+    screen: pygame.Surface (required)
         Game window
     """
 
