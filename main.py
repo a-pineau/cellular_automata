@@ -4,7 +4,7 @@ import sys
 import os
 import win32api
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (400, 100)
-sys.path.insert(0, "/home/adrian/Desktop/Python/CellularAutomata_GameOfLife/src")
+sys.path.insert(0, "C:/Users/Adrian/Desktop/Python/CellularAutomata_GameOfLife/src")
 
 import math
 import pygame
@@ -90,7 +90,7 @@ def main():
         alive, percentage = CA.get_stats_cells()
         display_cells_stats(screen, alive, percentage)
         display_progress_bar(screen, percentage)
-        if not pause and record or taking_snapshot:
+        if record or taking_snapshot:
             record_game(screen)
         clock.tick(fps)
         taking_snapshot = False
