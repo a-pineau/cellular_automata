@@ -4,7 +4,7 @@ import sys
 import os
 import win32api
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (400, 100)
-sys.path.insert(0, "C:/Users/Adrian/Desktop/Python/CellularAutomata_GameOfLife/src")
+sys.path.insert(0, "/home/adrian/Desktop/Python/CellularAutomata_GameOfLife/src")
 
 import math
 import pygame
