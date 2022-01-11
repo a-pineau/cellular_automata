@@ -6,6 +6,5 @@ John Horton Conway's Game of Life using a 2D cellular automata grid with the ass
 - A living cell with more than 3 living cell dies (overpopulation)
 - A dead cell with exactly 3 living cells becomes alive
 
-
 ![CellularAutomata_GameOfLife](results/01.png)
 ![CellularAutomata_GameOfLife](results/cells_stack.gif)
