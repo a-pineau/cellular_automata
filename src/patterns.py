@@ -1,6 +1,6 @@
 """TODO"""
 
-def set_glider(r, c):
+def set_glider(r, c, grid):
     """Initializes a glider"""
     return (
         (r, c),
@@ -10,7 +10,7 @@ def set_glider(r, c):
         (r, c + 2),
     )
 
-def set_Gosper_glider_gun(r, c):
+def set_Gosper_glider_gun(r, c, grid):
     return (
         (r, c),
         (r, c + 1),

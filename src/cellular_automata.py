@@ -12,46 +12,46 @@ class CellularAutomata(pygame.sprite.Sprite):
         """
         self.gen = 0
         self.cells = np.zeros((N_ROW, N_COL))
-        self.cells_rect = [pygame.Rect((x * CELL_SIZE, y * CELL_SIZE + YOFFSET), 
+        self.cells_rect = [pygame.Rect((x * CELL_SIZE, y * CELL_SIZE + Y_OFFSET), 
                            (CELL_SIZE, CELL_SIZE)) for x in range(N_COL) for y in range(N_ROW)]
 
-    def display_grid(self, screen):
+    def display_grid(self, screen) -> None:
         """
         TODO
         """
         screen.fill(BACKGROUND)
         for r in range(N_ROW):
-            y = r * CELL_SIZE + YOFFSET
+            y = r * CELL_SIZE + Y_OFFSET
             for c in range(N_COL):
                 x = c * CELL_SIZE
                 current_cell = self.cells[r, c]
                 screen.blit(CELL_IMGS[current_cell], (x, y))
 
-    def change_cell_state(self, click=None, pressed=None):
-        for cell_r in self.cells_rect:
-            if cell_r.collidepoint(pygame.mouse.get_pos()):
-                x, y = cell_r.topleft
-                r = (y - YOFFSET) // CELL_SIZE
-                c = x // CELL_SIZE
-                if (click and click == 1) or (pressed and pressed[0]):
-                    self.cells[r, c] = 1
-                elif (click and click == 3) or (pressed and pressed[2]):
-                    self.cells[r, c] = 0
+    def change_cell_state(self, click=None, pressed=None) -> None:
+            x, y = pygame.mouse.get_pos()
+            r = (y - Y_OFFSET) // CELL_SIZE
+            c = x // CELL_SIZE
+            try:
+                self.cells[r, c]
+            except IndexError:
+                return None
+            else:
+                if r >= 0 and c >= 0:
+                    if (click and click == 1) or (pressed and pressed[0]):
+                        self.cells[r, c] = 1
+                    elif (click and click == 3) or (pressed and pressed[2]):
+                        self.cells[r, c] = 0
 
     def reset_grid(self) -> None:
         """Fill the grid with dead cells (used when restarting the game)."""
         self.cells = np.zeros((N_ROW, N_COL))
 
-    def display_stats_cells(self, screen) -> None:
+    def get_stats_cells(self) -> tuple:
+        """Returns the number of cells alive and the associated percentage."""
         n_alive_cells = np.count_nonzero(self.cells == 1)
         size_grid = N_COL * N_ROW
         percentage_alive = round((n_alive_cells / size_grid) * 100, 2)
-        stats = f"{n_alive_cells} cells alive ({percentage_alive}%)"
-        stats = FONT.render(stats, True, ALIVE)
-        stats_rect = stats.get_rect()
-        stats_rect.right = N_COL * CELL_SIZE
-        stats_rect.top = 5
-        screen.blit(stats, stats_rect)
+        return n_alive_cells, percentage_alive
 
 
     def apply_rules(self, environment="Moore") -> None:
