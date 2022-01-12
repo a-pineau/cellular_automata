@@ -50,23 +50,6 @@ class CellularAutomata(pygame.sprite.Sprite):
 
     # Methods
     # -----------
-    def display_grid(self, screen) -> None:
-        """Display (using Pygame) the current grid onscreen.
-
-        Parameter
-        ---------
-        screen: pygame.Surface (required)
-            Game window
-        """
-        
-        screen.fill(BACKGROUND)
-        for r in range(N_ROW):
-            y = r * CELL_SIZE + Y_OFFSET
-            for c in range(N_COL):
-                x = c * CELL_SIZE
-                current_cell = self.cells[r, c]
-                screen.blit(CELL_IMGS[current_cell], (x, y))
-
     def change_cell_state(self, click=None, pressed=None) -> None:
         """Change the state of a given cell.
 
@@ -97,6 +80,10 @@ class CellularAutomata(pygame.sprite.Sprite):
                 elif (click and click == 3) or (pressed and pressed[2]):
                     self.cells[r, c] = 0
 
+    def get_grid(self) -> np.ndarray:
+        """Returns the current grid"""
+        return self.cells
+
     def reset_grid(self) -> None:
         """Fill the grid with dead cells (used when restarting the game)."""
         self.cells = np.zeros((N_ROW, N_COL))
@@ -107,7 +94,6 @@ class CellularAutomata(pygame.sprite.Sprite):
         size_grid = N_COL * N_ROW
         percentage_alive = round((n_alive_cells / size_grid) * 100, 2)
         return n_alive_cells, percentage_alive
-
 
     def apply_rules(self, environment="Moore") -> None:
         """Apply the (standard) transition rules to the current grid.

@@ -79,7 +79,7 @@ def main():
         if not pause:
             CA.apply_rules()
             generation += 1
-        CA.display_grid(screen)
+        display_grid(screen, CA.get_grid())
         if show_commands:
             display_commands(screen)
         if draw_circle_pointer:
@@ -113,6 +113,25 @@ def get_freqrate_monitor(device) -> int:
     settings = win32api.EnumDisplaySettings(device.DeviceName, -1)
     return getattr(settings, "DisplayFrequency")
 
+def display_grid(screen, grid):
+    """Display (using Pygame) the current grid onscreen.
+
+    Parameter
+    ---------
+    screen: pygame.Surface (required)
+        Game window
+    grid: numpy.ndarray (required)
+        Current grid
+    """
+
+    screen.fill(BACKGROUND)
+    for r in range(N_ROW):
+        y = r * CELL_SIZE + Y_OFFSET
+        for c in range(N_COL):
+            x = c * CELL_SIZE
+            current_cell = grid[r, c]
+            screen.blit(CELL_IMGS[current_cell], (x, y))
+
 def record_game(screen) -> None:
     """Save a snapshot of the current grid to the SNAP_FOLDER.
 
@@ -127,29 +146,6 @@ def record_game(screen) -> None:
     extension = "png"
     file_name = f"snapshot_{n_snap}.{extension}"
     pygame.image.save(screen, join(SNAP_FOLDER, file_name))
-
-def draw_circle_selection(screen, pressed) -> None:
-    """Draws a circle centered around the mouse pointer.
-
-    The circle is drawn when holding shift and pressing left or right 
-    mouse click. If the left mouse click is held, the circle is yellow (giving birth to cells).
-    Its red otherwise (killing cells).
-
-    Parameter
-    ---------
-    screen: pygame.Surface (required)
-        Game window
-    pressed: bool (required)
-        True if any mouseclick is pressed, False otherwise
-    """
-
-    # left or right click
-    if pressed[0] or pressed[2]:
-        x, y = pygame.mouse.get_pos()
-        circle = YELLOW_CIRCLE if pressed[0] else RED_CIRCLE
-        circle_rect = circle.get_rect(center=(x, y))
-        if pygame.mouse.get_focused():
-            screen.blit(circle, circle_rect)
 
 def display_generation(screen, generation) -> None:
     """Display the current number of generations (top-left)
@@ -328,6 +324,28 @@ def display_commands(screen) -> None:
     screen.blit(cmd_lr_click, cmd_lr_click_rect)
     screen.blit(cmd_shift_lr_click, cmd_shift_lr_click_rect)
 
+def draw_circle_selection(screen, pressed) -> None:
+    """Draws a circle centered around the mouse pointer.
+
+    The circle is drawn when holding shift and pressing left or right 
+    mouse click. If the left mouse click is held, the circle is yellow (giving birth to cells).
+    Its red otherwise (killing cells).
+
+    Parameter
+    ---------
+    screen: pygame.Surface (required)
+        Game window
+    pressed: bool (required)
+        True if any mouseclick is pressed, False otherwise
+    """
+
+    # left or right click
+    if pressed[0] or pressed[2]:
+        x, y = pygame.mouse.get_pos()
+        circle = YELLOW_CIRCLE if pressed[0] else RED_CIRCLE
+        circle_rect = circle.get_rect(center=(x, y))
+        if pygame.mouse.get_focused():
+            screen.blit(circle, circle_rect)
 
 if __name__ == "__main__":
     main()
