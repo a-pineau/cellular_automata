@@ -39,15 +39,9 @@ class CellularAutomata(pygame.sprite.Sprite):
     # Constructor
     # -----------
     def __init__(self):
-        """Constructor.
-
-        Calls the parent constructor and initializes all the attributes.
-        """
-
+        """Constructor. Initializes the grid."""
         self.cells = np.zeros((N_ROW, N_COL))
-        self.cells_rect = [pygame.Rect((x * CELL_SIZE, y * CELL_SIZE + Y_OFFSET), 
-                           (CELL_SIZE, CELL_SIZE)) for x in range(N_COL) for y in range(N_ROW)]
-
+        
     # Methods
     # -----------
     def change_cell_state(self, click=None, pressed=None) -> None:
