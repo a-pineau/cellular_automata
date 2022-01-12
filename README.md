@@ -20,9 +20,9 @@ Shortkeys:
 
 Further additions:
 
-- Buttons to add popular patterns (glider, Gosper glider gun)
+- Buttons to add popular patterns (glider, Gosper glider gun, etc.)
 - Grid size editing
-- Environment choice editing (Moore or von Neumann, current is Moore)
+- Environment editing (Moore or von Neumann, current is Moore)
 - Transition rules edigint (current are the standard ones, see above)
 
 For more general informations: 
