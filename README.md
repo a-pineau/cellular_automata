@@ -32,8 +32,8 @@ For more general informations:
 
 Requirements:
 
-[Python](https://www.python.org/)
-[Pygame](https://www.pygame.org/news)
+[Python](https://www.python.org/)\
+[Pygame](https://www.pygame.org/news)\
 [NumPy](https://numpy.org/)
 
 Note: GIFs upload seem to visually disrupt the regularity of the 2D CA grid.
