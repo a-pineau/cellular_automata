@@ -30,6 +30,12 @@ For more general informations:
 [Cellular Automata](https://en.wikipedia.org/wiki/Cellular_automaton)\
 [John Horton Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
+Requirements:
+
+[Python](https://www.python.org/)
+[Pygame](https://www.pygame.org/news)
+[NumPy](https://numpy.org/)
+
 Note: GIFs upload seem to visually disrupt the regularity of the 2D CA grid.
 ![CellularAutomata_GameOfLife](screenshots/cells_selection.gif)
 ![CellularAutomata_GameOfLife](screenshots/01.png)
