@@ -2,22 +2,23 @@
 
 import sys
 import os
+import math
+
+from os.path import join, dirname, abspath
 import win32api
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (400, 100)
-sys.path.insert(0, "C:/Users/Adrian/Desktop/Python/CellularAutomata_GameOfLife/src")
+sys.path.insert(0, abspath(join(dirname(__file__), "src")))
 
-import math
 import pygame
 from pygame import gfxdraw
 
 from cellular_automata import CellularAutomata
 from constants import *
-SNAP_FOLDER = os.path.join(os.path.dirname(__file__), "results")
+SNAP_FOLDER = join(dirname(__file__), "results")
 n_snap = 0
 
-
 def main():
-    """Implements the main loop."""
+    """Implements the main loop and deals with the events."""
     monitor = win32api.EnumDisplayDevices()
     try:
         os.mkdir(SNAP_FOLDER)
@@ -125,7 +126,7 @@ def record_game(screen) -> None:
     n_snap += 1
     extension = "png"
     file_name = f"snapshot_{n_snap}.{extension}"
-    pygame.image.save(screen, os.path.join(SNAP_FOLDER, file_name))
+    pygame.image.save(screen, join(SNAP_FOLDER, file_name))
 
 def draw_circle_selection(screen, pressed) -> None:
     """Draws a circle centered around the mouse pointer.

@@ -4,7 +4,6 @@ In descending order:
 - Window size and font property
 - Colours used
 - Images (please note that all images used are free to use, links provided below)
-- Initial configurations
 """
 
 import os
