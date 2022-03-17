@@ -36,7 +36,7 @@ Requirements:
 [Pygame](https://www.pygame.org/news)\
 [NumPy](https://numpy.org/)
 
-Note: GIFs upload seem to visually disrupt the regularity of the 2D CA grid.
+Note: GIFs upload seems to visually disrupt the regularity of the 2D CA grid and might be laggy.
 ![CellularAutomata_GameOfLife](screenshots/cells_selection.gif)
 ![CellularAutomata_GameOfLife](screenshots/01.png)
 ![CellularAutomata_GameOfLife](screenshots/cells_evolution.gif)
