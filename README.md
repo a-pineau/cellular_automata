@@ -1,4 +1,4 @@
-# Abalone_Pygame
+# About
 John Horton Conway's Game of Life using a 2D Cellular Automata (CA) grid with the associated standard transition rules:
 
 - A living cell with fewer than 2 living neighbours dies
